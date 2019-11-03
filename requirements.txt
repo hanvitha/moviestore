@@ -1,0 +1,13 @@
+flask
+mysql-connector
+gunicorn
+flask_restful
+pandas
+matplotlib
+scipy
+sklearn
+numpy
+seaborn
+nltk
+surprise
+

@@ -1,0 +1,18 @@
+<div class="row">
+    {% for movie in movies %}
+        <div class="col-md-2 col-sm-3 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="{{ url_for('movie', id=movie[0]) }}">
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content">
+                        <i class="fas fa-plus fa-3x"></i>
+                    </div>
+                </div>
+                <img class="img-fluid"
+                     src={{ url_for('static', filename='img/postures/'+movie[0]|string+'.jpg') }} alt="">
+            </a>
+            <div class="portfolio-caption">
+                <p class="text-camelcase">{{ movie[1] }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

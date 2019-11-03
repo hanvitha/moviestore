@@ -1,0 +1,92 @@
+{% include "header.html" %}
+<!-- Header -->
+
+<div class="wrapper">
+
+    <!-- Movie Grid -->
+
+    <section class="row" style="margin-left: 40px">
+        <div class="col-lg-5 col-sm-5">
+            <a alt="Watch now" class="portfolio-link" data-toggle="modal" href="{{ url_for('watchmovie', movie=movie) }}">
+            <img class="movieimg" alt='Watch {{ movie }} Now'
+                 src={{ url_for('static', filename='img/postures/'+movieid+'.jpg') }}>
+            </a>
+
+        </div>
+        <div class="col-lg-7 col-sm-7 ">
+            <div class="row">
+                <h4>{{ movie }}</h4>
+            </div>
+            <div></div>
+            <div class="row">
+                <h5>Genres: </h5>
+                {% for g in genres %}
+                    <td>{{ g }}</td>
+                {% endfor %}
+            </div>
+            <div></div>
+            <div class="row">
+                <h5>User Rating: </h5>
+                <div class="stars-outer">
+                    <div class="stars-inner" style="width:{{ (rating/5)*100|round }}%"></div>
+                </div>
+            </div>
+        <div></div>
+            <div class="row">
+                <div class="rating-num">
+                    {{ rating }} average based on {{ count }} reviews
+                </div>
+            </div>
+        <div></div>
+            <div class="row">
+            <form id="watch_form" method="POST" action="{{ url_for('watchmovie') }}">
+                <input hidden type="text" id="movie" name="movie" value="{{ movie }}">
+                <input hidden type="text" id="movieid" name="movieid" value="{{ movieid }}">
+                <button id="watchbutton" style="background-color: #fed136" type=submit>Watch Now</button>
+            </form>
+            </div>
+        <div></div>
+            <div class="row">
+                <div>
+                    <label>Rate this movie:  </label>
+                </div>
+                <div class="col-sm-4 col-lg-4">
+                    <select style="width: 50px" name="rating" id="rating"  type=submit>
+                        <option value="1">  1  </option>
+                        <option value="2">  2  </option>
+                        <option value="3">  3  </option>
+                        <option value="4">  4  </option>
+                        <option value="5">  5  </option>
+                    </select>
+                </div>
+                <div class="col-sm-4 col-lg-4"><button id='ratingbutton' style="background-color: #fed136" >Submit</button>
+                </div>
+            </div>
+        <div></div>
+            <div><p id="response"></p></div>
+            <div class="row">
+                <h5>Overview: </h5>
+                <p>{{ overview }}</p>
+            </div>
+        </div>
+
+    </section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $('#ratingbutton').click(function () {
+        var rating = $('#rating').find(':selected').attr('value');
+        var movieid = $('#movieid').attr('value');
+        $.ajax({
+            url: "{{ url_for('submitrating') }}",
+            type: "POST",
+            dataType: 'json',
+            data: {'rating': rating, 'movieid':movieid},
+            success: function (resp) {
+                $('#response').html(resp.response);
+            }
+        })
+    })
+</script>
+
+{% include "footer.html" %}

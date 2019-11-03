@@ -1,0 +1,8 @@
+*.nc
+*.DS_store
+.idea/*
+_pycac/*
+notebooks/*
+dataset/MLP-20M.*
+static/img/postures*
+*.csv

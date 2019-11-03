@@ -1,0 +1,130 @@
+
+<style>
+
+/* Full-width input fields */
+    input {
+        width: 25%;
+        padding: 15px;
+        margin: 5px;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    /* Add a background color when the inputs get focus */
+    input:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    #signup_submit, #login_submit {
+        background-color: #fed136;
+        opacity: 1;
+    }
+
+    #signup_submit:hover, #login_submit:hover {
+        color:black;
+        opacity: 0.5;
+    }
+
+</style>
+{% include "header.html" %}
+
+<!-- Header -->
+<header class="masthead" style="background-image:  url({{ url_for ('static', filename = 'img/bg1.png') }});">
+    <div class="container">
+        <div class="center">
+            <section>
+                <h3 class="intro-lead-in">Welcome To Movie Store! Login to continue.</h3>
+                <h2><span id="formHeading">Login / </span><a id="formOption" onclick="formToggle()" href="#">Sign Up</a>
+                </h2>
+                {% if error %}
+                    <div style="color:#fed136">{{ error }}</div>
+                {% endif %}
+                <!--Login form-->
+                <form id="login_form" name="login_form" action="{{ url_for('login') }}" method="POST" enctype="multipart/form-data">
+                    <input id="login_user" type="text" required name="login_user" value="" placeholder="Username"></br>
+                    <input id="login_password" type="password" required name="login_password" value=""
+                           placeholder="Password"></br>
+                    <input id="login_submit" type="submit" name="login_submit" value="Login">
+                </form>
+
+                <!--Signup form-->
+                <form name="signup_form" id="signup_form" method="POST" action="{{ url_for('signup') }}" style="display: none;">
+                    <input id="signup_email" required type="text" name="signup_email" value="h1@gmail.com" placeholder="Email"></br>
+                    <input id="signup_name" required type="text" name="signup_name" value="Hanvithha"
+                           placeholder="Full Name"></br>
+                    <input id="signup_password" required type="password" name="signup_password" value="pass"
+                           placeholder="Password"></br>
+                    <input id="signup_zipcode" type="text" name="signup_zipcode" value="75056"
+                           placeholder="Zip Code"></br>
+                    <input id="signup_age" type="number" name="signup_age" value="22" placeholder="Age"></br>
+
+                    <label><input type="checkbox" name="signup_terms_checkbox" id="signup_terms_checkbox"> I Agree to <a>terms and conditions</a>
+                    </label></br>
+                    <input id="signup_submit" type="submit" name="signup_submit" value="Sign up">
+                </form>
+
+            </section>
+            <section>
+                <div></div>
+            </section>
+
+        </div>
+    </div>
+    </header>
+</div>
+
+{% include "footer.html" %}
+<script>
+
+    // Form toggles between login and sign up, 0 for login and 1 for signup
+    var formType = 0;
+
+    function formToggle() {
+        // flip function for formType value
+        formType++;
+        formType = formType % 2;
+
+        // If it's a signup form
+        if (formType === 1) {
+
+            // Hide login elements
+            $("#login_form").slideUp(250);
+            $('#login_validation_errors').slideUp(250);
+
+            // Modify text based elements for signup
+            $("#formHeading").fadeOut(250, function () {
+                $(this).text("Sign up or ").fadeIn(250);
+            });
+            $("#formOption").fadeOut(250, function () {
+                $(this).text("Login").fadeIn(250);
+            });
+
+            // Show signup elements
+            $("#signup_form").slideDown(250);
+
+        }
+
+        // If it's a login form
+        if (formType === 0) {
+
+            // Hide signup elements
+            $("#signup_form").slideUp(250);
+            $('#signup_validation_errors').slideUp(250);
+
+            // Modify text based elements
+            $("#formHeading").fadeOut(250, function () {
+                $(this).text("Login or ").fadeIn(250);
+            });
+            $("#formOption").fadeOut(250, function () {
+                $(this).text("Sign up").fadeIn(250);
+            });
+
+            // Show Login elements
+            $('#login_form').slideDown(250);
+        }
+
+    };
+</script>
+
+</html>
