@@ -4,5 +4,4 @@
 _pycac/*
 notebooks/*
 dataset/MLP-20M.*
-static/img/postures*
 *.csv
