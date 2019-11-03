@@ -16,17 +16,21 @@ app.static_folder = 'static'
 app.secret_key = b'_Blah"gd5HK\n\xec]/'
 app.logger.setLevel(logging.DEBUG)
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
-# APP_ROOT = "/opt/app-root/src/aahack"
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+APP_ROOT = os.getenv('APP_ROOT')
 
 # DB connection details
-# host="mysql.registration.svc"
-host = "localhost"
-port = '3306'
-user = "root"
-password = "rootpass"
-database = "ms"
+# host = "localhost"
+# port = '3306'
+# user = "root"
+# password = "rootpass"
+# database = "ms"
 
+database = os.getenv('dbname')
+user = os.getenv('dbusername')
+password = os.getenv('dbpassword')
+host = os.getenv('MYSQL_SERVICE_HOST')
+port = os.getenv('MYSQL_SERVICE_PORT')
 @app.route("/")
 def index(error=None):
     if 'userid' in session:

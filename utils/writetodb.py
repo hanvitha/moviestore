@@ -7,17 +7,23 @@ print("Praise God! ");
 
 __author__ = 'hanvitha'
 
-# DATA_SET = "/opt/app-root/src/dataset"
+
+# APP_ROOT = os.getenv('APP_ROOT')
 # POSTURES = "/opt/app-root/src/dataset/MLP-20M"
 dataset = os.path.join(os.getcwd(), '..', 'dataset')
 postures = os.path.join(dataset, 'MLP-20M')
-# host="mysql.registration.svc"
+
 host = "localhost"
 port = '3306'
 user = "root"
 password = "rootpass"
 database = "ms"
 
+database = os.getenv('dbname')
+user = os.getenv('dbusername')
+password = os.getenv('dbpassword')
+host = os.getenv('MYSQL_SERVICE_HOST')
+port = os.getenv('MYSQL_SERVICE_PORT')
 
 def writeUsers():
     try:
