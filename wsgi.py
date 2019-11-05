@@ -5,7 +5,6 @@ from flask import Flask, render_template, session, redirect, request, url_for, j
 import traceback
 import logging
 from utils.recommendations import Recommendation
-from utils.writetodb import WriteToDbObj
 import mysql.connector
 from datetime import timedelta
 
