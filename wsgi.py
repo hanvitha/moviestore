@@ -4,9 +4,9 @@ from flask import Flask, render_template, session, redirect, request, url_for, j
 # from flaskext.mysql import MySQL
 import traceback
 import logging
-from utils.recommendations import Recommendation
 import mysql.connector
-from datetime import timedelta
+from utils.recommendations import Recommendation
+
 
 __author__ = 'hanvitha'
 
@@ -25,6 +25,7 @@ APP_ROOT = os.getenv('APP_ROOT')
 # user = "root"
 # password = "rootpass"
 # database = "ms"
+
 
 database = os.getenv('dbname')
 user = os.getenv('dbusername')
