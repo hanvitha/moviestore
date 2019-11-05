@@ -5,6 +5,7 @@ from flask import Flask, render_template, session, redirect, request, url_for, j
 import traceback
 import logging
 from utils.recommendations import Recommendation
+from utils.writetodb import WriteToDbObj
 import mysql.connector
 from datetime import timedelta
 
@@ -31,6 +32,7 @@ user = os.getenv('dbusername')
 password = os.getenv('dbpassword')
 host = os.getenv('MYSQL_SERVICE_HOST')
 port = os.getenv('MYSQL_SERVICE_PORT')
+
 @app.route("/")
 def index(error=None):
     if 'userid' in session:
@@ -69,9 +71,7 @@ def home():
             print("Welcome home babe")
             trending = []
             message = "Welcome " + session['name']
-            db, cursor = connectToDB()
             similarMovies = None
-            latestmovie = None
 
             try:
                 trending = recommObject.getTrendingRecommendations()
@@ -255,6 +255,13 @@ def logout():
 
 
 db, cursor = connectToDB()
+# w2b = WriteToDbObj(db,cursor)
+# w2b.writeUsers()
+# w2b.writeRatings()
+# w2b.writeMovies()
+# w2b.writeGenres()
+# w2b.writeMovieGenres()
+
 recommObject = Recommendation(db)
 recommObject.prepareContentBasedRecomm()
 
