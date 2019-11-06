@@ -37,24 +37,21 @@ class Recommendation:
 
     def prepareContentBasedRecomm(self):
         try:
-            # md = pd.read_csv('data/movies_metadata.csv')
-            query = "select * from movies;"
-            self.md = pd.read_sql(query, self.db)
+            self.md = pd.read_csv('data/movies_metadata.csv')
+            # query = "select * from movies;"
+            # self.md = pd.read_sql(query, self.db)
             self.md['overview'] = self.md['overview'].fillna('')
             tf = TfidfVectorizer(analyzer='word', ngram_range=(1, 2), min_df=0, stop_words='english')
             tfidf_matrix = tf.fit_transform(self.md['overview'])
             tfidf_matrix.shape
             self.cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
-            print(self.cosine_sim[0])
-            # md = md.reset_index()
-            print(self.md.head(5))
-            # md.set_index('id')
-            print(self.md.head(5))
+
             self.titles = self.md['title']
             self.indices = pd.Series(self.md.index, index=self.md['title'])
             print(self.indices.head(5))
+
         except Exception as e:
-            print("DB emoty")
+            traceback.print_exc()
             return pd.DataFrame()
 
     def getContentBasedRecomm(self, title):
