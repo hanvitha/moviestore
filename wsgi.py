@@ -23,7 +23,7 @@ APP_ROOT = os.getenv('APP_ROOT')
 # host = "localhost"
 # port = '3306'
 # user = "root"
-# password = "rootpass"
+# password = "pass"
 # database = "ms"
 
 
@@ -135,6 +135,7 @@ def signup():
 
 
 def connectToDB():
+    print(host)
     db = mysql.connector.connect(host=host,
                                  user=user,
                                  password=password,
@@ -261,8 +262,10 @@ db, cursor = connectToDB()
 # w2b.writeMovies()
 # w2b.writeGenres()
 # w2b.writeMovieGenres()
+print("Preparing Content BAsed recomm")
 
 recommObject = Recommendation(db)
+print(".... ")
 recommObject.prepareContentBasedRecomm()
 
 if __name__ == '__main__':
