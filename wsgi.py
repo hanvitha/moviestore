@@ -263,8 +263,11 @@ db, cursor = connectToDB()
 # w2b.writeMovieGenres()
 
 recommObject = Recommendation(db)
+print("Preparing content based recom")
 recommObject.prepareContentBasedRecomm()
+print("Done preparing recomm")
 
 if __name__ == '__main__':
     logout()
+    print("Running app!Praise God")
     app.run(debug=True)

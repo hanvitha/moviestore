@@ -82,6 +82,7 @@ class Recommendation:
             # query = "select * from movies;"
             # md = pd.read_sql(query, self.db)
             # md.head()
+            print("GEtting trending recomm")
             vote_counts = self.md[self.md['vote_count'].notnull()]['vote_count'].astype('int')
             vote_avgs = self.md[self.md['vote_avg'].notnull()]['vote_avg'].astype('int')
             C = vote_avgs.mean()
