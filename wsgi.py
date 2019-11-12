@@ -23,15 +23,15 @@ APP_ROOT = os.getenv('APP_ROOT')
 # host = "localhost"
 # port = '3306'
 # user = "root"
-# password = "Jesus@123"
+# password = "rootpass"
 # database = "ms"
 
 
 database = os.getenv('dbname')
 user = os.getenv('dbusername')
 password = os.getenv('dbpassword')
-host = os.getenv('AIML_MYSQL_SERVICE_HOST')
-port = os.getenv('AIML_MYSQL_SERVICE_PORT_MYSQL')
+host = os.getenv('MYSQL_SERVICE_HOST')
+port = os.getenv('MYSQL_SERVICE_PORT')
 
 @app.route("/")
 def index(error=None):
