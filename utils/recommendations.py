@@ -1,20 +1,8 @@
 
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from scipy import stats
-from ast import literal_eval
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
-from surprise.model_selection import KFold
-from surprise import accuracy
-from nltk.stem.snowball import SnowballStemmer
-from nltk.stem.wordnet import WordNetLemmatizer
-from nltk.corpus import wordnet
-from surprise import Reader, Dataset, SVD
 import warnings; warnings.simplefilter('ignore')
-from flask import json
 import random
 import traceback
 
@@ -38,8 +26,9 @@ class Recommendation:
     def prepareContentBasedRecomm(self):
         try:
             # md = pd.read_csv('data/movies_metadata.csv')
-            query = "select * from movies;"
+            query = "select * from movies limit 5000;"
             self.md = pd.read_sql(query, self.db)
+            print(self.md.shape)
             self.md['overview'] = self.md['overview'].fillna('')
             tf = TfidfVectorizer(analyzer='word', ngram_range=(1, 2), min_df=0, stop_words='english')
             tfidf_matrix = tf.fit_transform(self.md['overview'])
