@@ -1,13 +1,23 @@
 {% include "header.html" %}
-<header>
-    <div>
-        <div>
-              Hey {{ name }} this is your profile
-        </div>
-        <div>
-            Email: {{ email }}
+
+<div class="wrapper">
+<!-- Main Message -->
+<header class="masthead" style="background-image:  url({{ url_for ('static', filename = 'bg1.png') }});">
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in">Movie Nerd</div>
         </div>
     </div>
 </header>
 
+<section class="bg-light page-section" id="portfolio">
+
+        <div>
+              {{ name }}
+        </div>
+        <div>
+            Email: {{ email }}
+        </div>
+</section>
+</div>
 {% include "footer.html" %}
