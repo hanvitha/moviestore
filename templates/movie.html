@@ -9,7 +9,7 @@
         <div class="col-lg-5 col-sm-5">
             <a alt="Watch now" class="portfolio-link" data-toggle="modal" href="{{ url_for('watchmovie', movie=movie) }}">
             <img class="movieimg" alt='Watch {{ movie }} Now'
-                 src={{ url_for('static', filename='img/postures/'+movieid+'.jpg') }}>
+                 src={{ url_for('static', filename=movieid+'.jpg') }}>
             </a>
 
         </div>

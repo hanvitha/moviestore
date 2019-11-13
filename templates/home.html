@@ -29,7 +29,7 @@
                                 <i class="fa fa-play-circle-o movie-button" title="Watch Now"></i>
                             </div>
                         </div>
-                        <img class="img-fluid" src={{ url_for('static', filename='img/postures/'+item[0]|string+'.jpg') }} alt="{{ item[1] }}">
+                        <img class="img-fluid" src={{ url_for('static', filename=item[0]|string+'.jpg') }} alt="{{ item[1] }}">
                     </a>
                     <div class="portfolio-caption">
                         <p class="text-camelcase">{{ item[1] }}</p>
@@ -58,7 +58,7 @@
                                 <i class="fa fa-play-circle-o movie-button" title="Watch Now"></i>
                             </div>
                         </div>
-                        <img class="img-fluid" src={{ url_for('static', filename='img/postures/'+item[0]|string+'.jpg') }} alt="{{ item[1] }}">
+                        <img class="img-fluid" src={{ url_for('static', filename=item[0]|string+'.jpg') }} alt="{{ item[1] }}">
                     </a>
                     <div class="portfolio-caption">
                         <p class="text-camelcase">{{ item[1] }}</p>
