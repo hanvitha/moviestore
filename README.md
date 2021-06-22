@@ -39,7 +39,15 @@ password: pass
 
 
 
+### To demo:
+* First open jupyter hub and clone the project. 
+* From notebooks folder open Movie Recommender Systems.ipynb
+* Talk about the different recommendation systems and approaches.
+* Show this portal to show the approaches in live.
+* This showcases the benefit of having a collaborative environment where Datascientists/Developers can work with the data and share the code with App dev
+* App dev can test and deploy in same environment.
 
 
 
 
+Thanks for stopping by! :) 
